@@ -12,7 +12,7 @@ class CartItem extends React.Component {
 
   render() {
     // object destructuring
-    const { title, price, qty } = this.state;
+    const { title, price, qty } = this.props.product;
     return (
         <div className="cart-item">
           <div className="left-block">
@@ -48,13 +48,14 @@ class CartItem extends React.Component {
   }
 
   increaseQty = () => {
+    console.log(this.props);
       this.setState({
-        qty: this.state.qty + 1
+        qty: this.props.qty + 1
       });
   }
 
   decreaseQty = () => {
-    const { qty } = this.state;
+    const { qty } = this.props;
 
     if(qty == 0){
       return;
