@@ -14,31 +14,42 @@ class CartItem extends React.Component {
     // object destructuring
     const { title, price, qty } = this.state;
     return (
-      <div style={styles.cartItem} className="cart-item">
-        <div className="left-block">
-          <img style={styles.image} />
-        </div>
-        <div style={styles.rightBlock} className="right-block">
-          <div
-            style={{ fontSize: 20, fontWeight: 500, fontFamily: "sans-serif" }}
-          >
-            {title}
+        <div className="cart-item">
+          <div className="left-block">
+            <img style={styles.image} />
           </div>
-          <div style={{ color: "#333", fontStyle: "italic" }}>>Rs {price}</div>
-          <div style={{ color: "#333", fontStyle: "oblique" }}>Qty: {qty}</div>
-          <div style={{marginTop: 10}} className="cart-item-actions">
-              <img style={styles.actionIcons} alt="increase" src="https://image.flaticon.com/icons/svg/992/992651.svg" onClick={this.increaseQty}/>
-              <img style={styles.actionIcons} alt="decrease" src="https://image.flaticon.com/icons/svg/864/864373.svg" onClick={this.decreaseQty}/>
-              <img style={styles.actionIcons} alt="delete" src="https://image.flaticon.com/icons/svg/1345/1345823.svg"/>
+          <div className="right-block">
+            <div style={ { fontSize: 25 } }>{title}</div>
+            <div style={ { color: '#777' } }>Rs {price} </div>
+            <div style={ { color: '#777' } }>Qty: {qty} </div>
+            <div className="cart-item-actions">
+              {/* Buttons */}
+              <img
+                alt="increase"
+                className="action-icons"
+                src="https://image.flaticon.com/icons/svg/992/992651.svg"
+                onClick={this.increaseQty}
+              />
+              <img
+                alt="decrease"
+                className="action-icons"
+                src="https://image.flaticon.com/icons/svg/1665/1665612.svg"
+                onClick={this.decreaseQty}
+              />
+              <img
+                alt="delete"
+                className="action-icons"
+                src="https://image.flaticon.com/icons/svg/1214/1214428.svg"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
   }
 
   increaseQty = () => {
       this.setState({
-        any: this.state.qty + 1
+        qty: this.state.qty + 1
       });
   }
 
