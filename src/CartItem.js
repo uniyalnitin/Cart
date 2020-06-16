@@ -13,6 +13,7 @@ class CartItem extends React.Component {
   render() {
     // object destructuring
     const { title, price, qty } = this.props.product;
+    const { product, increaseQuantity, decreaseQuantity, deleteProduct} = this.props;
     return (
         <div className="cart-item">
           <div className="left-block">
@@ -28,44 +29,24 @@ class CartItem extends React.Component {
                 alt="increase"
                 className="action-icons"
                 src="https://image.flaticon.com/icons/svg/992/992651.svg"
-                onClick={this.increaseQty}
+                onClick={() => {increaseQuantity(product)}}
               />
               <img
                 alt="decrease"
                 className="action-icons"
                 src="https://image.flaticon.com/icons/svg/1665/1665612.svg"
-                onClick={this.decreaseQty}
+                onClick={() => {decreaseQuantity(product)}}
               />
               <img
                 alt="delete"
                 className="action-icons"
                 src="https://image.flaticon.com/icons/svg/1214/1214428.svg"
+                onClick={() => deleteProduct(product.id)}
               />
             </div>
           </div>
         </div>
       );
-  }
-
-  increaseQty = () => {
-    console.log(this.props);
-      this.setState({
-        qty: this.props.qty + 1
-      });
-  }
-
-  decreaseQty = () => {
-    const { qty } = this.props;
-
-    if(qty == 0){
-      return;
-    }
-
-    this.setState((prevState) => {
-      return {
-        qty: prevState.qty - 1
-      }
-    });
   }
 }
 
@@ -76,18 +57,6 @@ const styles = {
     background: "#ccc",
     borderRadius: 20,
     border: "none",
-  },
-  cartItem: {
-    display: "flex",
-    alignItems: "center",
-  },
-  rightBlock: {
-    marginLeft: 20,
-  },
-  actionIcons:{
-      height: 25,
-      width: 25,
-      marginLeft: 10
   }
 };
 export default CartItem;
